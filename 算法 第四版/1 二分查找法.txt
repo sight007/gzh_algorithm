@@ -1,0 +1,36 @@
+/**
+ * 二分查找法算是一个初级、非常经典的算法，以前也见过好多次，总是感觉好像有些地方可能有点问题。这次把这个问题详细的解决一下。
+ *
+ * 问：二分法求取mid的时候感觉好像不是均匀的取中间数？
+ * 答：有序数组a：1——9，其索引：0——8。中间位置应该为5,        a[mid]=a[0+(8-0)]=a[4]=5，这是没有问题的
+ *     有序数组b：1——8，其索引：0——7。中间位置应该为4.5,      a[mid]=a[0+(7-0)]=a[3]=4，这个提前了一位
+ *     
+ *     也就是说，不总是中间位置。用下标计算中间位置，奇数会计算正确，偶数会向前移0.5（向前取整），这是由于/会向前取整。
+ *     
+ *	   其实，只要是分成两半，没有遗漏的元素就行，需不要非要分成数量相同的两半。
+ */
+
+  public static int BinarySearch(int key, int[] a){
+	int low = 0;
+	int high = a.length-1;
+	
+	while(low<=high){
+		int mid = low + (high-low)/2;
+		if(a[mid]>key) return high=mid-1;
+		else if(a[mid]<key) return low=mid+1;
+		else return a[mid]
+	}
+	
+	return -1;
+  }
+
+  //能否做出三分法，乃至n分法，记得有类算法的复杂度为log(N)
+  //mid1=low+(high-low)/3
+  //mid2=low+(high-low)/3*2
+  
+  //low——mid1，mid1——mid2，mid——high
+  //if(low<=mid1 && mid1<=mid2 && mid2<=high)
+  //if(low=mid1=mid2=high) return a[mid1]
+
+
+  //这类算法有问题，如果长度为n，我把它划分成n分，那复杂度还是不是O(n)，所以复杂度不会随n一直下降，可能存在一个最低点。
