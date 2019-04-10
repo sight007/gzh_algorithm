@@ -1,0 +1,48 @@
+/**
+ * 这是一个排序算法研究的框架。
+ *
+ * 只需要把具体算法的算法名字改了，把具体实现写在sort()，我们默认调用less()和exch()两个方法。
+ * 使我们更加关注算法原理，而不是具体实现细节。
+ * 也可以通过这两个方法分析算法的复杂度。
+ */
+
+
+public class Example{
+	
+	public static void sort(Comparable[] a){
+		//算法的具体实现
+	}
+	
+	private static boolean less(Comparable v, Comparable w){
+		return v.compareTo(w) < 0;
+	}
+	
+	private static void exch(Comparable[] a, int i, int j){
+		Comparable t = a[i];
+		a[i] = a[j];
+		a[j] = t;
+	}
+	
+	private static void show(Comparable[] a){
+		for(int i=0; i<a.length; i++){
+			StdOut.print(a[i] +  "");
+		StdOut.println();
+		}
+	}
+	
+	public static boolean isSorted(Comparable[] a){
+		for(int i=1; i<a.length; i++){
+			if(less(a[i], a[i-1])) return false;
+		}
+		return true;
+	}
+	
+	public static void main(String[] args){
+		String[] a = In.readStrings();
+		sort(a);
+		assert isSorted(a);
+		show(a);
+	}
+	
+	
+}
