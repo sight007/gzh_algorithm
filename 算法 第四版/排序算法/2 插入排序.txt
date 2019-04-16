@@ -1,0 +1,114 @@
+/**
+ * 类似于整理扑克。第一张牌肯定不用管。第i张牌向前逐次比较，每比一次，如果小，就交换。
+ *
+ * 插入排序总是一次一次的交换前进，不会一步到位。向前循环
+ *
+ * 
+ */
+
+public class InsertSort {
+
+	public static void sort(Comparable[] a) {
+		
+		int N = a.length;
+		for(int i=1; i<N; i++) {
+			System.out.println("外循环第"+i+"次循环开始");
+			for(int j=i; j>0; j--) {
+				boolean flag = less(a[j], a[j-1]);
+				if(!flag) break;
+				exch(a, j, j-1);  
+			}
+			System.out.println();
+		}
+
+	}
+	
+	private static void exch(Comparable[] a, int i, int j){
+		Comparable t = a[i];
+		a[i] = a[j];
+		a[j] = t;
+		System.out.println(a[i]+" 和 "+a[j]+" 交换");
+	}
+	
+	private static boolean less(Comparable v, Comparable w){
+		System.out.println("-->比较"+v+"和"+w);
+		return v.compareTo(w) < 0;
+	}
+	
+	public static void main(String[] args) {
+		Comparable[] a = new Comparable[] {12, 6, 98, 47, 88, 4, 14};
+		sort(a);
+		System.out.println(a);
+	}
+	
+}
+
+----------------------运行结果----------------------------
+
+外循环第1次循环开始
+-->比较6和12
+12 和 6 交换
+
+外循环第2次循环开始
+-->比较98和12
+
+外循环第3次循环开始
+-->比较47和98
+98 和 47 交换
+-->比较47和12
+
+外循环第4次循环开始
+-->比较88和98
+98 和 88 交换
+-->比较88和47
+
+外循环第5次循环开始
+-->比较4和98
+98 和 4 交换
+-->比较4和88
+88 和 4 交换
+-->比较4和47
+47 和 4 交换
+-->比较4和12
+12 和 4 交换
+-->比较4和6
+6 和 4 交换
+
+外循环第6次循环开始
+-->比较14和98
+98 和 14 交换
+-->比较14和88
+88 和 14 交换
+-->比较14和47
+47 和 14 交换
+-->比较14和12
+
+
+--------------------------算法整理-------------------------------
+public static void sort(Comparable[] a) {
+		
+	int N = a.length;
+	for(int i=1; i<N; i++) {
+		for(int j=i; j>0 && less(a[j], a[j-1]); j--) {
+			exch(a, j, j-1);  
+		}
+	}
+	
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
