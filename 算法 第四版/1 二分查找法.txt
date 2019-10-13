@@ -1,5 +1,5 @@
 /**
- * 二分查找法算是一个初级、非常经典的算法，以前也见过好多次，总是感觉好像有些地方可能有点问题。这次把这个问题详细的解决一下。
+ * 二分查找法算是一个初级、非常经典的算法。
  *
  * 问：二分法求取mid的时候感觉好像不是均匀的取中间数？
  * 答：有序数组a：1——9，其索引：0——8。中间位置应该为5,        a[mid]=a[0+(8-0)]=a[4]=5，这是没有问题的
@@ -20,7 +20,7 @@
 		int mid = low + (high-low)/2;
 		if(a[mid]>key) return high=mid-1;
 		else if(a[mid]<key) return low=mid+1;
-		else return a[mid]
+		else return a[mid];
 	}
 	
 	return -1;
